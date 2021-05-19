@@ -1,4 +1,3 @@
-use MONKEY-SEE-NO-EVAL;
 grammar Template::Mojo::Grammar {
     token TOP {
         ^ <expression>* $
@@ -164,7 +163,7 @@ class Template::Mojo {
     has Str $!from; # directory of the templates
 
     submethod BUILD(:$code!, *%options) {
-        &!code    = EVAL($code);
+        &!code    = $code.EVAL;
         $!from    = %options{'from'} // '';
         $!layout  = %options{'layout'} // '';
         %!content = %options{'content'} // ();
@@ -459,5 +458,3 @@ The value to that subroutione can be passed in the render call:
 Tadeusz Sośnierz
 
 =end pod
-
-
